@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-xyz" crossorigin="anonymous" />
+
+    
+
+</head>
+<style>
+    .image{
+    width: 30px; /* Set the width of the image */
+    height: 35px; /* Set the height of the image */
+    border-radius: 50%; /* Make the image circular */
+    object-fit: cover; /* Ensure the image covers the circle */
+}
+#contact,#about{
+    .card {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    margin: 20px 20px 20px 20px;
+}
+
+}
+</style>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/"><img  src="{{ url_for('static', filename='rguktlogo.png') }}" class="image"></a>
+            
+                <a class="nav-link text-secondary" href="{{ url_for('home') }}" style="font-weight: bolder;" > Home</a>
+           
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto" style="font-weight: bolder;">
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="aboutlink" onclick="toggleAbout();return false">About Us </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="contactlink" onclick="toggleContactCard(); return false;">Contact</a>
+                        </li>
+                  
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <marquee behavior="scroll" direction="left" class="py-2" style="font-family: 'Times New Roman', Times, serif;font-weight: bolder;font-size:25px;color: #23578B;"><strong>UNIVERSITY STUDENT CGPA CALCULATOR WITH REMEDIAL ADJUSTMENT</strong></marquee>
+    <div class="container mt-4">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}
+        {% endblock %}
+    </div>
+   
+        <div id="contact" for="contactlink" style="display: none;">
+            <div class="card text-dark">
+                <div class="card-body">
+                    <h5 class="card-title">Contact Us</h5>
+                    <p class="card-text" ><strong>Founder Name:</strong>N.Lavanya Bai</p>
+                    <p><strong>Contact:</strong><a class="card-text" href="tel:93900915725"> 93909157725</a></p>
+                    <p><strong>Email:</strong><a class="card-text" href="nlavanya295@gmail.com"> university@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+        <div id="about" for="aboutlink" style="display: none;">
+            <div class="card text-dark" style="height:400px;width:450px">
+                <div class="card-body">
+                    <h5 class="card-title">About Us</h5>
+                    <p class="card-text">Welcome to our University Student CGPA Calculator  
+                        with Remedial Adjustment. Our project aims to help students
+                         accurately calculate their academic performance by integrating 
+                         remedial exams, ensuring fair assessment. We provide a user-friendly 
+                         tool for simplified GPA calculation, emphasizing transparency and 
+                         reliability, empowering students to monitor and enhance their academic 
+                         achievements effectively.
+                    </p>
+                    <p class="card-text"><strong>Address:RGUKT,RK Valley,<br>
+                    Vempalli,Kadapa (Dist)<br>
+                AP,516330</strong><br></p>
+                </div>
+            </div>
+        </div>
+        
+   
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function toggleContactCard() {
+            var contactCard = document.getElementById('contact');
+            
+            // Toggle visibility
+            if (contactCard.style.display === 'none') {
+                contactCard.style.display = 'block';
+            } else {
+                contactCard.style.display = 'none';
+            }
+        }
+        function toggleAbout() {
+            var aboutcard = document.getElementById('about');
+            
+            // Toggle visibility
+            if (aboutcard.style.display === 'none') {
+                aboutcard.style.display = 'block';
+            } else {
+                aboutcard.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

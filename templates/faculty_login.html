@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Faculty Login{% endblock %}
+{% block content %}
+<div class="starter-template">
+    <h2 class="text-center">Faculty Login</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <img src="{{ url_for('static', filename='login.png') }}" style="height:500px;width:600px">
+            </div>
+            <!-- Login Form -->
+            <div class="col-sm-6 my-4">
+                <form name="facultyLoginForm" class="rounded bg-white shadow p-5" action="/faculty/login" method="post" onsubmit="return validateFacultyLogin()">
+                    <div class="form-floating mb-3">
+                        <label for="faculty_id">Faculty ID</label>
+                        <input type="text" class="form-control" id="faculty_id" placeholder="Enter Faculty ID" name="faculty_id" required>
+                    </div>
+                    <div class="form-floating">
+                        <label for="password"><i class="fas fa-lock"></i> Password:</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password" placeholder="Enter Password" name="password" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fas fa-eye-slash" id="togglePassword"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-info submit_btn w-100 my-4">Login</button>
+                    <a href="{{ url_for('home') }}" class="btn w-50 bg-secondary w-100 my-4 text-light">Back</a>
+                    {% if error %}
+                        <p class="text-danger mt-2">{{ error }}</p>
+                    {% endif %}
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/eceebf9b3f.js" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function() {
+        $("#togglePassword").on("click", function() {
+            const passwordField = $("#password");
+            const passwordFieldType = passwordField.attr("type");
+            if (passwordFieldType === "password") {
+                passwordField.attr("type", "text");
+                $("#togglePassword").removeClass("fa-eye-slash").addClass("fa-eye");
+            } else {
+                passwordField.attr("type", "password");
+                $("#togglePassword").removeClass("fa-eye").addClass("fa-eye-slash");
+            }
+        });
+    });
+
+    function validateFacultyLogin() {
+        var facultyID = document.forms["facultyLoginForm"]["faculty_id"].value;
+        var password = document.forms["facultyLoginForm"]["password"].value;
+
+        // Basic validation example
+        if (facultyID.trim() == "") {
+            alert("Faculty ID must be filled out");
+            return false;
+        }
+        if (password.trim() == "") {
+            alert("Password must be filled out");
+            return false;
+        }
+
+        // You can add more specific validation as needed
+        
+        return true;
+    }
+</script>
+{% endblock %}

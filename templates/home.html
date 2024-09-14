@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}University CGPA Calculator{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div align="center">
+        <p><i>Welcome to the University Engineering CGPA Calculation System! This platform is designed to provide an 
+            accurate and efficient way to calculate and track the CGPA of engineering students, 
+            incorporating both regular and remedial courses. The system offers personalized views for
+             students to monitor their academic progress and provides faculty members with comprehensive 
+             access to student performance data for effective academic management.</i></p>
+             <p><strong> </strong></p>
+
+    </div><br>
+    <div class="row justify-content-center">
+        <div class="col-md-4 mb-4">
+            <div class="card text-center"> 
+                <div class="card-body">
+                    <img src="{{ url_for('static', filename='student.jpg') }}" class="card-img-top avatar" alt="Student Image">
+                    <a href="/student/retrieve_password" class="btn btn-info mt-3 w-100">Student</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <img src="{{ url_for('static', filename='faculty.png') }}" class="card-img-top avatar" alt="Faculty Image">
+                    <a href="/faculty/register" class="btn btn-info mt-3 w-100">Faculty</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<style>
+.card {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    max-height: 200px;
+    object-fit: cover;
+}
+</style>
+

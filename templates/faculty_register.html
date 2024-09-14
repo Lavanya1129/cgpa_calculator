@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Faculty Register{% endblock %}
+{% block content %}
+<div class="container">
+    <h2 class=" text-center" style="font-family: 'Times New Roman', Times, serif;font-weight: bolder;">Faculty Register</h2>
+    <div class="row justify-content-center mt-5">
+        
+        <div class="col-md-6">
+            <div class="card shadow" >
+                <div class="card-body">
+                   
+                    <form method="POST" action="{{ url_for('faculty_register') }}" name="facultyForm" onsubmit="return validateForm()">
+                        <div class="form-group">
+                            <label for="FacultyId">Faculty ID</label>
+                            <input type="text" class="form-control" id="FacultyId" name="faculty_id" placeholder="FacultyId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="FacultyName">Faculty Name</label>
+                            <input type="text" class="form-control" id="FacultyName" name="FacultyName" required placeholder="FacultyName">
+                        </div>
+                        <div class="form-group">
+                            <label for="Email">Email</label>
+                            <input type="email" class="form-control" id="Email" name="Email" required placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="Department">Department</label>
+                            <input type="text" class="form-control" id="Department" name="Department" required placeholder="Department">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required  placeholder="Password">
+                        </div>
+                        <div class="row">
+                            <div class="col sm-6"><button type="submit" class="btn btn-info btn-block">Register</button></div>
+                                <div class="col sm-6"> <a href="{{ url_for('faculty_login') }}" class="btn btn-secondary btn-block ">Login</a></div>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <img src="{{ url_for('static', filename='signup.png') }}" class="img-fluid" alt="Signup Image" style="height: 590px;width: 700px;">
+        </div>
+        
+    </div>
+</div>
+{% endblock %}
+<script>
+function validateForm() {
+    var department = document.forms["facultyForm"]["Department"].value;
+    var departmentPattern = /^[A-Za-z]+$/;
+
+    if (!departmentPattern.test(department)) {
+        alert("Department name should only contain alphabets.");
+        return false;
+    }
+
+    return true;
+}
+</script>

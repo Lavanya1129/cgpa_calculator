@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Faculty Dashboard{% endblock %}
+{% block content %}
+<div class="starter-template">
+    <div style="text-align: center;">
+    <button onclick="window.print()" class="btn btn-info">Print</button>
+    <button onclick="window.location.href='/faculty/download'" class="btn btn-info">Download CSV</button>
+</div><br>
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Branch</th>
+                <th>Batch</th>
+                <th>E1S1_SGPA</th>
+                <th>E1S2_SGPA</th>
+                <th>E2S1_SGPA</th>
+                <th>E2S2_SGPA</th>
+                <th>E3S1_SGPA</th>
+                <th>E3S2_SGPA</th>
+                <th>AVERAGE CGPA</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ student.StudentID }}</td>
+                <td>{{ student.StudentName }}</td>
+                <td>{{ student.Branch }}</td>
+                <td>{{ student.Batch }}</td>
+                <td>{{ student.E1S1_SGPA }}</td>
+                <td>{{ student.E1S2_SGPA }}</td>
+                <td>{{ student.E2S1_SGPA }}</td>
+                <td>{{ student.E2S2_SGPA }}</td>
+                <td>{{ student.E3S1_SGPA }}</td>
+                <td>{{ student.E3S2_SGPA }}</td>
+                <td>{{ student.CGPA }}</td>
+            </tr>
+            
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</div>
+{% endblock %}
+

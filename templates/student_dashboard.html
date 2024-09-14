@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Student Login{% endblock %}
+{% block content %}
+<body>
+    <div class="container">
+        <h1 class="mt-5 text-center">Welcome, {{ student_data.StudentName }}</h1>
+        <div class="row justify-content-center mt-3">
+            <div class="col-md-6">
+                <div class="card text-center" style="width: 600px;">
+                    <div class="card-body">
+                        <p class="card-text"><strong>Student ID:</strong> {{ student_data.StudentID }}</p>
+                        <p class="card-text"><strong>Student Name:</strong> {{ student_data.StudentName }}</p>
+                        <p class="card-text"><strong>Batch:</strong> {{ student_data.Batch }}</p>
+                        <p class="card-text"><strong>Branch:</strong> {{ student_data.Branch }}</p>
+                        <p class="card-text"><strong>CGPA:</strong> {{ student_data.CGPA }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-3">
+            <a href="{{ url_for('logout') }}" class="btn btn-info">Logout</a>
+        </div>
+    </div>
+{% endblock %}

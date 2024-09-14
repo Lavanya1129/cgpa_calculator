@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Student Login{% endblock %}
+{% block content %}
+<div class="starter-template">
+    <h2 class="text-center">Student Login</h2>
+    <p align="center">If you know your password Login here by applying correct user credentials</p>
+    <div class="container">
+        <div class="row">
+            <!-- Login Form -->
+            <div class="col-sm-6 my-4">
+                <form name="myform" class="rounded bg-white shadow p-5" action="/student/login" method="post" onsubmit="return validation()">
+                    <div class="form-floating mb-3">
+                        <label for="floatingInput">Enter student ID</label>
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Enter Student ID" name="StudentID" required>
+                    </div>
+                    <div class="form-floating">
+                        <label for="password"><i class="fas fa-lock"></i> Password:</label>
+                       
+                            <input type="password" class="form-control" id="password" placeholder="enter Password" name="password" required>
+                            
+                
+                    </div>
+                    <button type="submit" class="btn btn-info submit_btn w-100 my-4">Sign in</button>
+                    <a href="{{ url_for('home') }}" class="btn w-50 bg-secondary w-100 my-4 text-light">Back</a>
+                    {% if error %}
+                        <p class="text-danger mt-2">{{ error }}</p>
+                    {% endif %}
+                </form>
+            </div>
+            <div class="col-sm-6" > 
+                <img src="{{ url_for('static', filename='login.png') }}" style="height:500px;width:600px">
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/eceebf9b3f.js" crossorigin="anonymous"></script>
+<script>
+   
+
+    function validation() {
+    var password = document.myform.password.value;
+    console.log(password); // Check what password value is being captured
+    
+    var pass = /^[A-Za-z0-9]{5}$/;
+    
+    if (!pass.test(password)) {
+        alert("Enter a password with exactly 5 characters containing only letters (both uppercase and lowercase).");
+        return false;
+    }
+    return true;
+}
+
+</script>
+{% endblock %}
